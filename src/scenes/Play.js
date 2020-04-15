@@ -7,15 +7,29 @@ class Play extends Phaser.Scene {
         //load images/tile sprite
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('moon', './assets/moon.png');
         this.load.image('starfield', './assets/starfield.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+       // this.load.audio('sfx_background', './music.mp3');
+        
+
     }
 
+    
     create() {
+
+      //  let backgroundNoise = this.sound.add('sfx_background');
+      //  backgroundNoise.play();   //doesnt work 
+
+    //    let rocket = this.sound.add('sfx_rocket');
+    //     rocket.play();
+
         //place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
-
+        this.moon = this.add.tileSprite(0, 0, 640, 480, 'moon').setOrigin(0, 0);
+        
+    
         // white rectangle borders
         this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(5, 443, 630, 32, 0xFFFFFF).setOrigin(0, 0);
@@ -44,6 +58,8 @@ class Play extends Phaser.Scene {
         key: 'explode',
         frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
         frameRate: 30
+
+        
     });
         // score
         this.p1Score = 0;
@@ -72,10 +88,29 @@ class Play extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
         this.gameOver = true;
         }, null, this);
+        
 
+        //Implement the 'FIRE' UI text from the original game (10)
+        // FIRE 
+        // this.fire = fire1 ;
+        // Fire display
+        let fire = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right', 
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+        this.fire = this.add.text(69, 54, 'FIRE',scoreConfig);
     }
     
-
+    
+    
 
     update() {
         // check key input for restart
@@ -88,6 +123,9 @@ class Play extends Phaser.Scene {
         }
         //scroll starfield
         this.starfield.tilePositionX -= 4;
+        this.moon.tilePositionX -= 4;
+
+        //this.sound.play('sfx_background'); 
 
         if (!this.gameOver) {               
             this.p1Rocket.update();         // update rocket sprite
@@ -140,8 +178,10 @@ class Play extends Phaser.Scene {
         });   
         // score increment and repaint
         this.p1Score += ship.points;
-        this.scoreLeft.text = this.p1Score;   
+        this.scoreLeft.text = this.p1Score; 
         this.sound.play('sfx_explosion'); 
            
     }
+    
 }
+

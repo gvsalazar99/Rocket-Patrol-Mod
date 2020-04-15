@@ -1,3 +1,9 @@
+//Grecia V Salazar 
+//In Play.js, I Implement the 'FIRE' UI text from the original game (10) in lines 95-107
+
+//
+
+
 let config = {
     type: Phaser.CANVAS,
     width:640,
