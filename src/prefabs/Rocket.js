@@ -14,7 +14,7 @@ class Rocket extends Phaser.GameObjects.Sprite{
     }
     update(){
         //left/right movement 
-        if(!this.ifFiring){
+        if(!this.ifFiring){  //allows player to move rocket left to right after it's fired 
             if(keyLEFT.isDown && this.x >=47){
                 this.x-=2;
             } else if (keyRIGHT.isDown && this.x <= 578){

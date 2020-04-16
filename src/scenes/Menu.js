@@ -33,16 +33,18 @@ class Menu extends Phaser.Scene {
         let centerY= game.config.height/2;
         let textSpacer=64;
 
-        this.add.text(centerX, centerY- textSpacer, 'Rocket PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(centerX, centerY, 'Use <--> arrows to move and (F) to Fire', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY- textSpacer, '🚀Rocket Patrol🚀', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY, 'Use ⬅️➡️ arrows to move and (F) to Fire', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(centerX, centerY + textSpacer, 'Press <- for Easy or -> for Hard', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY + textSpacer, 'Press ⬅️ for Easy or ➡️ for Hard', menuConfig).setOrigin(0.5);
 
 
 
         // display menu text
         this.add.text(20, 20, "Rocket Patrol Menu");
+       
+
 
         // launch the next scene
         //this.scene.start("playScene");
@@ -52,6 +54,8 @@ class Menu extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
     update() {
+
+     
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
           // easy mode
           game.settings = {
@@ -68,7 +72,8 @@ class Menu extends Phaser.Scene {
             gameTimer: 45000    
           }
           this.sound.play('sfx_select');
-          this.scene.start("playScene");    
+          this.scene.start("playScene");  
+           
         }
       }
     }
