@@ -11,14 +11,16 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/starfield.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-       // this.load.audio('sfx_background', './music.mp3');
-        
+        this.load.audio('sfx_background', './music.mp3');
+        this.load.audio('sfx_noise', './backgroundNoise.wav');
 
     }
 
     
     create() {
-
+        // *** let sound= this.sound.add('sfx_noise'); // explosion plays but not music, music breaks code
+        // *** sound.play();
+        
       //  let backgroundNoise = this.sound.add('sfx_background');
       //  backgroundNoise.play();   //doesnt work 
 
@@ -40,9 +42,10 @@ class Play extends Phaser.Scene {
 
         //add the rocket (p1)
         //bind to scene by using "this"
-        this.p1Rocket = new Rocket(this, game.config.width/2, 431, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
+       
 
-        //add spaceships 3 
+        this.p1Rocket = new Rocket(this, game.config.width/2, 431, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
+        //add spaceships 3
         this.ship01 = new Spaceship(this,game.config.width + 192, 132, 'spaceship', 0, 30).setOrigin(0,0);
         this.ship02 = new Spaceship(this,game.config.width + 96, 196, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this,game.config.width, 260, 'spaceship', 0, 10).setOrigin(0,0);
@@ -123,7 +126,7 @@ class Play extends Phaser.Scene {
         }
         //scroll starfield
         this.starfield.tilePositionX -= 4;
-        this.moon.tilePositionX -= 4;
+        this.moon.tilePositionX -= 1;
 
         //this.sound.play('sfx_background'); 
 
