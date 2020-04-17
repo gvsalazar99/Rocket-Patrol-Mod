@@ -11,12 +11,15 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('frame', './assets/purple.png');
         this.load.image('ship2', './assets/rocket2.png'); //spaceship2
+        this.load.image('mountain1', './assets/mountains1.png'); //paralax scrolling
+        this.load.image('mountain2', './assets/mountain2.png'); //parallax scrolling
 
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         this.load.audio('sfx_background', './assets/music.mp3');
         //this.load.audio('sfx_noise', './backgroundNoise.wav');
 
+      
     }
     
     create() {
@@ -30,15 +33,19 @@ class Play extends Phaser.Scene {
 
 
         //place tile sprite
+    
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.mountain1 = this.add.tileSprite(0, 20, 640, 480, 'mountain1').setOrigin(0, 0);  //NEW
+        this.mountain2 = this.add.tileSprite(0, 20, 640, 480, 'mountain2').setOrigin(0, 0);  //NEW
         this.moon = this.add.tileSprite(0, 0, 640, 480, 'moon').setOrigin(0, 0);
         this.frame = this.add.tileSprite(0, 3, 640, 480, 'frame').setOrigin(0, 0);  //NEW
-    
+       
         
 
         //add the rocket (p1)
         //bind to scene by using "this"
-       
+      
+    
 
         this.p1Rocket = new Rocket(this, game.config.width/2, 431, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
         //add spaceships 3
@@ -46,8 +53,8 @@ class Play extends Phaser.Scene {
         this.ship02 = new Spaceship(this,game.config.width + 96, 196, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this,game.config.width, 260, 'spaceship', 0, 10).setOrigin(0,0);
         this.ship04 = new Spaceship(this,game.config.width, 100, 'ship2', 0, 40).setOrigin(0,0); //new ship, smaller
-
-
+       
+        
 
          //define keyboard keys
         keyF= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -128,8 +135,12 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
         //scroll starfield
-        this.starfield.tilePositionX -= 4;
-        this.moon.tilePositionX -= 1;
+        this.mountain1.tilePositionX -= 0.5; //paralax scrolling
+        this.mountain2.tilePositionX += 0.5; //paralax scrolling
+
+       this.starfield.tilePositionX -= 4;
+        this.moon.tilePositionX += 0.5;
+       
 
         //this.sound.play('sfx_background'); 
 

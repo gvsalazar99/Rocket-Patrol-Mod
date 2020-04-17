@@ -13,10 +13,16 @@
 
 //In Play.js, I implemented Create a new scrolling tile sprite for the background (10) (the moon)
 
+//In Main.js and Menu.js, I implemented Create a new title screen in lines 22 in Main and 36-40 in Menu. (15)
+
+//In Play.js, I implemented paralax scrolling by adding 2 mountains (15) lines 138,139 and preload
+
+
 let config = {
     type: Phaser.CANVAS,
     width:640,
     height:480,
+    backgroundColor: '#4f006d',
    scene: [ Menu , Play] 
 };
 
